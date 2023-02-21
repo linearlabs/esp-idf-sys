@@ -17,16 +17,23 @@
 
 #include "freertos/task_snapshot.h"
 
-#if CONFIG_IDF_TARGET_ESP32
-#include "esp_himem.h"
-#endif // CONFIG_IDF_TARGET_ESP32
 
 #if ESP_IDF_VERSION_MAJOR == 4
+
+#if CONFIG_IDF_TARGET_ESP32
+#include "esp32/himem.h"
+#endif // CONFIG_IDF_TARGET_ESP32
 #include "esp_spiram.h"
+
 #elif ESP_IDF_VERSION_MAJOR == 5
+
 #ifdef ESP_IDF_COMP_ESP_PSRAM_ENABLED
+#if CONFIG_IDF_TARGET_ESP32
+#include "esp32/himem.h"
+#endif // CONFIG_IDF_TARGET_ESP32
 #include "esp_psram.h"
 #endif // ESP_IDF_COMP_ESP_PSRAM_ENABLED
+
 #endif // ESP_IDF_VERSION_MAJOR == 5
 
 #if ESP_IDF_VERSION_MAJOR == 4
